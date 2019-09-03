@@ -49,15 +49,16 @@ public class Converter {
                 insNumber ++;
             }
             else{
+                //obteniendo valores binarios
                 String op = getBinary(subline[0],operators,binaryOperators);
                 String reg = getBinary(subline[1],registers,binaryRegister);
                 temp.add(Integer.toString(insNumber));
                 temp.add(op);//obtener operador en binario
                 temp.add(op + " " + reg + " 00000000");//obtener regitro en binario
                 temp.add("0");//obtener valor en binario
-                insNumber ++;
+                insNumber ++;//incremento en numero de instruccion para ir a la siguiente
             }
-            converList.add(temp);
+            converList.add(temp);//se añade la instruccion ya traducida
         }
         return converList;
     }
@@ -74,10 +75,11 @@ public class Converter {
             value = Integer.toBinaryString(number);
          }
         else{
-            sign = "1";
+            sign = "1";//en caso de que el valor sea negativo se le asigna un 1 al primer bit
             value = Integer.toBinaryString(abs(number));
         }
         int leftNumbers = 7 - value.length();
+        //rellenar de 0 para completar los bits
         for(int i=0 ; i < leftNumbers; i++){
             value = "0"+value;
         }
@@ -124,8 +126,10 @@ public class Converter {
             }          
         }
         else{
+            //switch en las operaciones
             switch(subinst[0].toLowerCase()){
                 case "store":
+                    //switch en los registros
                     switch(subinst[1].toLowerCase()){
                         case "ax":
                             obj.setAx(obj.getAc());

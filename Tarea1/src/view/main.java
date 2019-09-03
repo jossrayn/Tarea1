@@ -29,8 +29,8 @@ public class main extends javax.swing.JFrame {
     private Path path;
     private Data memData;//incializador del objeto encargado de manipular los datos;
     private ArrayList<String> list; 
-    private int init = 0;
-    private int finalInst = 0;
+    private int init = 0;//variable que conoce el valor de la instruccion inicial
+    private int finalInst = 0;//variable que conoce el valor de la ultima instruccion
     private int counter;//contador de instrucciones
     /**
      * Creates new form main
@@ -294,7 +294,7 @@ public class main extends javax.swing.JFrame {
         memData = new Data(0,0);
         FileManager file = new FileManager();
         
-        list = file.read(path);
+        list = file.read(path);//lectura del archivo cargado
         Converter data = new Converter();
         init = memData.generateInstruction();
         ArrayList<ArrayList<String>> dataConverted = data.convert(list,init);
@@ -306,6 +306,7 @@ public class main extends javax.swing.JFrame {
         String [][] none={};
         String titles[] = {"Instruction","Operation","Binary Code","Number"};
         DefaultTableModel model = new DefaultTableModel(none,titles);
+        /*Carga de datos en la tabla de memoria*/
         for(int i=0;i<dataConverted.size();i++){
             ArrayList<String> array = dataConverted.get(i);
             model.addRow(array.toArray());

@@ -90,9 +90,12 @@ public class Data {
         this.dx = dx;
     }
     
+    /*
+    funcion encargada de genera la posicion en la cual arrancan las intrucciones
+    */
     public int generateInstruction(){
         Random randNumber = new Random();
-        pc = randNumber.nextInt(91);
+        pc = randNumber.nextInt(91);//generacion del numero random para el inicio en la seccion de memoria
         ir = pc + 1;
         return pc;
     }
